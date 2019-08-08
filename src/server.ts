@@ -7,6 +7,6 @@ consign({
   extensions: ['.ts'],
 })
   .include('/src/middlewares.ts')
-  .then('/src/routes')
+  .then('/src/route')
   .then('/src/boot.ts')
   .into(server);
