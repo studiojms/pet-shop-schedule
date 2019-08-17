@@ -1,0 +1,17 @@
+type Query {
+  listCustomers(name: String): [Customer!]!
+}
+
+# type Query {
+#   listCustomers(): Customer[]!
+# }
+
+type Mutation {
+  addCustomer(name: String!, cpf: String!): Customer!
+}
+
+type Customer {
+  id: ID!
+  name: String!
+  cpf: String!
+}

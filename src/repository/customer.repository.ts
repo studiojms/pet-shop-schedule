@@ -1,24 +1,30 @@
 import IRepository from './IRepository';
-import { Customer } from '../domain/customer';
+import { Customer } from '../model/Customer';
 
-export class CustomerRepository implements IRepository<Customer> {
-  public list(): Customer[] {
-    throw new Error('Method not implemented.');
+class CustomerRepository implements IRepository<Customer> {
+  public list(): any {
+    return Customer.findAll();
   }
 
-  public get(id: string): Customer {
-    throw new Error('Method not implemented.');
+  public get(id: string): any {
+    return Customer.findByPk(id);
   }
 
-  public create(object: Customer): void {
-    throw new Error('Method not implemented.');
+  public create(object: Customer): any {
+    return Customer.create(object);
   }
 
   public update(id: string, object: Customer): void {
-    throw new Error('Method not implemented.');
+    console.log(id, object);
   }
 
-  public delete(id: string): void {
-    throw new Error('Method not implemented.');
+  public delete(id: string): any {
+    return Customer.destroy({
+      where: {
+        id: id,
+      },
+    });
   }
 }
+
+export default new CustomerRepository();
