@@ -14,16 +14,22 @@ class CustomerRepository implements IRepository<Customer> {
     return Customer.create(object);
   }
 
-  public update(id: string, object: Customer): void {
-    console.log(id, object);
+  public update(object: Customer): any {
+    return Customer.update(object, {
+      where: {
+        id: object.id,
+      },
+    }).then(() => {
+      return object;
+    });
   }
 
-  public delete(id: string): any {
+  public delete(id: any): any {
     return Customer.destroy({
       where: {
         id: id,
       },
-    });
+    }).then(() => id);
   }
 }
 

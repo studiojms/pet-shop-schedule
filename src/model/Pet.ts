@@ -1,17 +1,19 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
-// import { Pet } from './Pet';
+import { Customer } from './Customer';
 
-export class Customer extends Model {
+export class Pet extends Model {
   public id!: number;
   public name!: string;
-  public documentNumber!: string | null;
+  public ownerId!: number;
+  public type?: string;
+  public comment?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
 
-const CustomerFactory = (sequelize: Sequelize) => {
-  Customer.init(
+const PetFactory = (sequelize: Sequelize) => {
+  Pet.init(
     {
       id: {
         type: new DataTypes.INTEGER(),
@@ -22,9 +24,15 @@ const CustomerFactory = (sequelize: Sequelize) => {
         type: new DataTypes.STRING(),
         allowNull: false,
       },
-      documentNumber: {
-        type: new DataTypes.STRING(),
+      ownerId: {
+        type: new DataTypes.INTEGER(),
         allowNull: false,
+      },
+      type: {
+        type: new DataTypes.STRING(),
+      },
+      comment: {
+        type: new DataTypes.STRING(),
       },
       createdAt: {
         type: new DataTypes.DATE(),
@@ -37,16 +45,16 @@ const CustomerFactory = (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      tableName: 'customer',
+      tableName: 'pet',
     }
   );
 
-  // Customer.hasMany(Pet, {
-  //   sourceKey: 'id',
+  Pet.belongsTo(Customer, {
+    targetKey: 'id',
+    foreignKey: 'ownerId',
+  });
 
-  // });
-
-  return Customer;
+  return Pet;
 };
 
-export default CustomerFactory;
+export default PetFactory;

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('customer', {
+    return queryInterface.createTable('pet', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,8 +11,17 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
-      documentNumber: {
+      ownerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'pet', key: 'id' },
+      },
+      type: {
+        type: Sequelize.STRING,
+      },
+      comment: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -25,7 +34,8 @@ module.exports = {
       },
     });
   },
+
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('customer');
+    return queryInterface.dropTable('pet');
   },
 };

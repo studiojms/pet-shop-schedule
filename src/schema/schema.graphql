@@ -1,17 +1,31 @@
 type Query {
-  listCustomers(name: String): [Customer!]!
+  listCustomers: [Customer!]!
+  getCustomerById(id: ID!): Customer!
+  listPets: [Pet!]!
 }
 
-# type Query {
-#   listCustomers(): Customer[]!
-# }
-
 type Mutation {
-  addCustomer(name: String!, cpf: String!): Customer!
+  addCustomer(name: String!, documentNumber: String!): Customer!
+  updateCustomer(id: ID!, name: String, documentNumber: String): Customer!
+  removeCustomer(id: ID!): ID!
+
+  addPet(name: String!, ownerId: Int!, type: String, comment: String): Pet!
 }
 
 type Customer {
   id: ID!
   name: String!
-  cpf: String!
+  documentNumber: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Pet {
+  id: ID!
+  name: String!
+  owner: Customer!
+  type: String
+  comment: String
+  createdAt: String!
+  updatedAt: String!
 }

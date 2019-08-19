@@ -5,7 +5,7 @@ export default interface IRepository<T> {
 
   create(object: T): void;
 
-  update(id: string, object: T): void;
+  update(object: T): void;
 
   delete(id: string): void;
 }
