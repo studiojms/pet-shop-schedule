@@ -54,6 +54,11 @@ const PetFactory = (sequelize: Sequelize) => {
     foreignKey: 'ownerId',
   });
 
+  Customer.hasMany(Pet, {
+    as: 'pets',
+    foreignKey: 'ownerId',
+  });
+
   return Pet;
 };
 

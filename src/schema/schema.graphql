@@ -2,6 +2,7 @@ type Query {
   listCustomers: [Customer!]!
   getCustomerById(id: ID!): Customer!
   listPets: [Pet!]!
+  getPetById(id: ID!): Pet!
 }
 
 type Mutation {
@@ -10,12 +11,15 @@ type Mutation {
   removeCustomer(id: ID!): ID!
 
   addPet(name: String!, ownerId: Int!, type: String, comment: String): Pet!
+  updatePet(id: ID!, name: String!, ownerId: Int!, type: String, comment: String): Pet!
+  removePet(id: ID!): ID!
 }
 
 type Customer {
   id: ID!
   name: String!
   documentNumber: String!
+  pets: [Pet!]!
   createdAt: String!
   updatedAt: String!
 }

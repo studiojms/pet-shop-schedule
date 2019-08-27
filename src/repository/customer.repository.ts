@@ -1,13 +1,21 @@
 import IRepository from './IRepository';
 import { Customer } from '../model/Customer';
+import { Pet } from '../model/Pet';
 
 class CustomerRepository implements IRepository<Customer> {
   public list(): any {
     return Customer.findAll();
   }
 
-  public get(id: string): any {
-    return Customer.findByPk(id);
+  public get(id: string | number): any {
+    return Customer.findByPk(id, {
+      include: [
+        {
+          model: Pet,
+          as: 'pets',
+        },
+      ],
+    });
   }
 
   public create(object: Customer): any {
@@ -20,7 +28,7 @@ class CustomerRepository implements IRepository<Customer> {
         id: object.id,
       },
     }).then(() => {
-      return object;
+      return this.get(object.id);
     });
   }
 

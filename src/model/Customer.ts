@@ -1,5 +1,4 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
-// import { Pet } from './Pet';
 
 export class Customer extends Model {
   public id!: number;
@@ -40,11 +39,6 @@ const CustomerFactory = (sequelize: Sequelize) => {
       tableName: 'customer',
     }
   );
-
-  // Customer.hasMany(Pet, {
-  //   sourceKey: 'id',
-
-  // });
 
   return Customer;
 };

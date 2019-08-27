@@ -24,8 +24,25 @@ class PetRepository implements IRepository<Pet> {
     });
   }
 
-  public get(id: string): any {
-    return Pet.findByPk(id);
+  public get(id: string | number): any {
+    return Pet.findByPk(id, {
+      include: [
+        {
+          model: Customer,
+        },
+      ],
+    }).then((pet: any) => {
+      return {
+        ...pet.dataValues,
+        owner: {
+          id: pet.Customer.id,
+          name: pet.Customer.name,
+          documentNumber: pet.Customer.documentNumber,
+          createdAt: pet.Customer.createdAt,
+          updatedAt: pet.Customer.updatedAt,
+        },
+      };
+    });
   }
 
   public create(object: Pet): any {
@@ -38,7 +55,7 @@ class PetRepository implements IRepository<Pet> {
         id: object.id,
       },
     }).then(() => {
-      return object;
+      return this.get(object.id);
     });
   }
 
