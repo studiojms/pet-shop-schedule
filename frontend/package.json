@@ -1,0 +1,41 @@
+{
+  "name": "pet-shop-schedule-frontend",
+  "version": "0.0.1",
+  "description": "A pet shop schedule frontend communicating with graphql api",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/studiojms/pet-shop-schedule.git"
+  },
+  "keywords": [
+    "react",
+    "graphql",
+    "apollo"
+  ],
+  "author": "studiojms",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/studiojms/pet-shop-schedule/issues"
+  },
+  "homepage": "https://github.com/studiojms/pet-shop-schedule#readme",
+  "dependencies": {
+    "antd": "^3.22.1",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.5.3",
+    "react": "^16.9.0",
+    "react-apollo": "^3.0.1",
+    "react-dom": "^16.9.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-router-dom": "^4.3.5",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.5.3"
+  }
+}

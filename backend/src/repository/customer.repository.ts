@@ -4,7 +4,14 @@ import { Pet } from '../model/Pet';
 
 class CustomerRepository implements IRepository<Customer> {
   public list(): any {
-    return Customer.findAll();
+    return Customer.findAll({
+      include: [
+        {
+          model: Pet,
+          as: 'pets',
+        },
+      ],
+    });
   }
 
   public get(id: string | number): any {
